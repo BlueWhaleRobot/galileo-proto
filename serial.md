@@ -23,7 +23,7 @@
 完整数据包内容构成一个c语言结构体，结构体具体构成如下所示：
 
 ```cpp
-typedefstruct{
+typedef struct{
   int nav_status;//导航服务状态，0表示没开启closed，1表示开启opened。
   int visual_status;//视觉系统状态，0表示没初始化uninit，1表示正在追踪tracking,2表示丢失lost,1和2都表示视觉系统已经初始化完成。
   float power;//电源电压【946】v。
