@@ -21,14 +21,14 @@
 例如，下面cpp代码将构造一个开启导航系统的话题数据，数据内容请参考串口通信协议。
 
 ```cpp
-#include"galileo_serial_server/GalileoNativeCmds.h"
-galileo_serial_server::GalileoNativeCmdscurrentCmds;
-currentCmds.header.stamp=ros::Time::now();
-currentCmds.header.frame_id="galileo_serial_server";
-currentCmds.length=0x02;
+#include "galileo_serial_server/GalileoNativeCmds.h"
+galileo_serial_server::GalileoNativeCmds currentCmds;
+currentCmds.header.stamp = ros::Time::now();
+currentCmds.header.frame_id = "galileo_serial_server";
+currentCmds.length = 0x02;
 currentCmds.data.resize(0x02);
-currentCmds.data[0]=0x6d;
-currentCmds.data[1]=0x00;
+currentCmds.data[0] = 0x6d;
+currentCmds.data[1] = 0x00;
 ```
 
 ## <a href="#" id="status"></a>2.伽利略视觉导航系统状态话题“/galileo/status”
