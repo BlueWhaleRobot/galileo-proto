@@ -1,0 +1,11 @@
+[Unit]
+Description=Galileo Proto gitbook service
+
+[Service]
+Type=simple
+User=bwbot
+WorkingDirectory=/home/bwbot/data/src/gitbook/galileo-proto
+ExecStart=/usr/local/bin/gitbook --port 22233 --lrport 22332 serve
+
+[Install]
+WantedBy=multi-user.target

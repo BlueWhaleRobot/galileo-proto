@@ -1,0 +1,50 @@
+{
+  "title": "伽利略视觉导航系统通信控制协议",
+  "description": "伽利略视觉导航系统是一个融合了多种传感器以视觉导航为主导的机器人定位和运动控制系统。通过加载本系统可以实现机器人的定位和导航功能。适用于自动巡检机器人工业AGV,服务机器人等多种应用场景。",
+  "language": "zh",
+  "gitbook": "3.x.x",
+  "plugins": [
+    "github",
+    "editlink",
+    "prism",
+    "downloadpdf",
+    "yahei",
+    "katex",
+    "-search"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/BlueWhaleRobot/galileo-proto"
+    },
+    "editlink": {
+      "base": "https://github.com/BlueWhaleRobot/galileo-proto/edit/master",
+      "label": "编辑本页"
+    },
+    "sharing": {
+      "weibo": true,
+      "twitter": false,
+      "facebook": false
+    },
+    "downloadpdf": {
+      "base": "https://doc.bwbot.org/pdf/galileo-proto",
+      "label": "下载PDF",
+      "multilingual": false
+    },
+    "fontSettings": {
+      "theme": "white",
+      "family": "msyh",
+      "size": 2
+    }
+  },
+  "pdf": {
+    "pageNumbers": true,
+    "fontSize": 14,
+    "paperSize": "a4",
+    "margin": {
+      "right": 30,
+      "left": 30,
+      "top": 30,
+      "bottom": 50
+    }
+  }
+}
