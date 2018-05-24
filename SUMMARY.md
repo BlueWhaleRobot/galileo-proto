@@ -1,10 +1,7 @@
 # Summary
 
-## 引言
-  * [引言](README.md)
+* [引言](README.md)
 
-## [一、ROS通信协议](ros.md#start)
-  * [ROS通信协议](ros.md#start)
+* [一. ROS通信协议](ros.md#start)
 
-## [二、串口通信协议](serial.md#start)
-  * [串口通信协议](serial.md#start)
+* [二. 串口通信协议](serial.md#start)
