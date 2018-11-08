@@ -36,6 +36,23 @@ currentCmds.data[1] = 0x00;
 
 这个话题所属类型为galileo_serial_server::GalileoStatus，具体定义在/home/xiaoqiang/Documents/ros/src/galileo_serial_server/msg/GalileoStatus.msg文件。
 
+```
+std_msgs/Header header
+int32 navStatus
+int32 visualStatus
+int32 chargeStatus
+int32 loopStatus
+float32 power
+int32 targetNumID
+int32 targetStatus
+float32 targetDistance
+int32 angleGoalStatus
+float32 controlSpeedX
+float32 controlSpeedTheta
+float32 currentSpeedX
+float32 currentSpeedTheta
+```
+
 本话题里面数据成员的意义请参考《伽利略视觉导航系统串口通信协议》中第一部分“导航串口下发的数据包”中的内容定义。
 
 使用“rostopicecho/galileo/status”可以直接打印输出话题内容。
