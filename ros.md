@@ -56,3 +56,36 @@ float32 currentSpeedTheta
 本话题里面数据成员的意义请参考《伽利略视觉导航系统串口通信协议》中第一部分“导航串口下发的数据包”中的内容定义。
 
 使用“rostopicecho/galileo/status”可以直接打印输出话题内容。
+
+## ros中控制导航系统的例子
+
+### 开启导航系统
+
+首先查阅串口协议文档可知，开启导航对应的指令为 `m 0`,这是一个两个字节的指令。则可以在终端输入以下指令开启导航
+
+```bash
+rostopic pub /galileo/cmds galileo_serial_server/GalileoNativeCmds "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+length: 2
+data: [0x6d, 0]" -1
+```
+
+其中 length为指令长度，data为指令数据。0x6d对应字符'm'。
+有一个比较简单的输入方法先输入 `rostopic pub /galileo/cmds` 之后双击tab键自动补全
+
+```
+rostopic pub /galileo/cmds galileo_serial_server/GalileoNativeCmds "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+length: 2
+data: ''" 
+```
+
+会出现上面的内容。对data进行修改就可以发布对应的指令了。
