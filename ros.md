@@ -57,7 +57,7 @@ float32 currentSpeedTheta
 
 使用`rostopic echo /galileo/status`可以直接打印输出话题内容。
 
-## ros中控制导航系统的例子
+## ROS中控制导航系统的例子
 
 ### 开启导航系统
 
