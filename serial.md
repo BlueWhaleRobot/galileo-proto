@@ -24,24 +24,27 @@
 
 ```cpp
 typedef struct{
-  int nav_status;//导航服务状态，0表示没开启closed，1表示开启opened。
-  int visual_status;//视觉系统状态，0表示没初始化uninit，1表示正在追踪tracking,2表示丢失lost,1和2都表示视觉系统已经初始化完成。
-  int map_status; //建图服务状态，0表示未开始建图，1表示正在建图
-  int gc_status; //内存回收标志，0表示未进行内存回收，1表示正在进行内存回收
-  int gba_status; //闭环优化标志，0表示未进行闭环优化，1表示正在进行闭环优化
-  int charge_status; //充电状态，0 free 未充电状态, 1 charging 充电中, 2 charged 已充满，但仍在小电流充电, 3 finding
-                     //寻找充电桩, 4 docking 停靠充电桩, 5 error 错误
-  int loop_status; //是否处于自动巡检状态，1为处于，0为不处于。
-  float power;//电源电压【946】v。
-  int target_numID;//当前目标点编号,默认值为-1表示无效值。
-  int target_status;//当前目标点状态，0表示已经到达或者取消free，1表示正在前往目标点过程中working,2表示当前目标点的移动任务被暂停paused,3表示目标点出现错误error,默认值为-1表示无效值。
-  float target_distance;//机器人距离当前目标点的距离，单位为米，-1表示无效值，该值的绝对值小于0.01时表示已经到达。
-  int angle_goal_status;//目标角度达到情况，0表示未完成，1表示完成，2表示error,默认值为-1表示无效值。
-  float control_speed_x;//导航系统计算给出的前进速度控制分量,单位为m/s。
-  float control_speed_theta;//导航系统计算给出的角速度控制分量,单位为rad/s。
-  float current_speed_x;//当前机器人实际前进速度分量,单位为m/s。
-  float current_speed_theta;//当前机器人实际角速度分量,单位为rad/s。
-  unsigned int time_stamp;//时间戳,单位为1/30毫秒，用于统计丢包率。
+  int nav_status;// 导航服务状态，0表示没开启closed，1表示开启opened。
+  int visual_status;// 视觉系统状态，-1标系视觉系统处于关闭状态，0表示没初始化uninit，1表示正在追踪tracking,2表示丢失lost,1和2都表示视觉系统已经初始化完成。
+  int map_status; // 建图服务状态，0表示未开始建图，1表示正在建图
+  int gc_status; // 内存回收标志，0表示未进行内存回收，1表示正在进行内存回收
+  int gba_status; // 闭环优化标志，0表示未进行闭环优化，1表示正在进行闭环优化
+  int charge_status; // 充电状态，0 free 未充电状态, 1 charging 充电中, 2 charged 已充满，但仍在小电流充电, 3 finding
+                     // 寻找充电桩, 4 docking 停靠充电桩, 5 error 错误
+  int loop_status; // 是否处于自动巡检状态，1为处于，0为不处于。
+  float power;// 电源电压【946】v。
+  int target_numID;// 当前目标点编号,默认值为-1表示无效值。
+  int target_status;// 当前目标点状态，0表示已经到达或者取消free，1表示正在前往目标点过程中working,2表示当前目标点的移动任务被暂停paused,3表示目标点出现错误error,默认值为-1表示无效值。
+  float target_distance;// 机器人距离当前目标点的距离，单位为米，-1表示无效值，该值的绝对值小于0.01时表示已经到达。
+  int angle_goal_status;// 目标角度达到情况，0表示未完成，1表示完成，2表示error,默认值为-1表示无效值。
+  float control_speed_x;// 导航系统计算给出的前进速度控制分量,单位为m/s。
+  float control_speed_theta;// 导航系统计算给出的角速度控制分量,单位为rad/s。
+  float current_speed_x;// 当前机器人实际前进速度分量,单位为m/s。
+  float current_speed_theta;// 当前机器人实际角速度分量,单位为rad/s。
+  unsigned int time_stamp;// 时间戳,单位为1/30毫秒，用于统计丢包率。对于ROS API时间戳在状态的header里面
+  float current_pose_x; // 当前机器人在map坐标系下的X坐标,此坐标可以直接用于设置动态插入点坐标
+  float current_pose_y; // 当前机器人在map坐标系下的Y坐标
+  float current_angle; // 当前机器人在map坐标系下的z轴转角(yaw)
 }Galileo_Status;
 ```
 
