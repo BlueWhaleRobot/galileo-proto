@@ -5,7 +5,7 @@
 在[伽利略视觉导航系统串口通信协议](/serial.html)里面，导航串口可以发送和接收串口数据，这是通过galileo_serial_server包实现的，而这个包的实现原理就是将导航串口接收的数据转换成ros话题后以`/galileo/cmds`话题发布给伽利略系统，同时通过订阅伽利略系统状态话题“/galileo/status”然后封装后下发给导航串口。
 
 因此在ros系统里面，我们可以绕开串口直接发布`/galileo/cmds`话题就可以控制伽
-利略系统，直接订阅“/galileo/status”就可以获取伽利略系统状态。
+利略系统，直接订阅`/galileo/status`就可以获取伽利略系统状态。
 
 ## 1.命令发布话题 /galileo/cmds
 
