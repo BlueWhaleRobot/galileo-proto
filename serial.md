@@ -45,6 +45,7 @@ typedef struct{
   float current_pose_x; // 当前机器人在map坐标系下的X坐标,此坐标可以直接用于设置动态插入点坐标
   float current_pose_y; // 当前机器人在map坐标系下的Y坐标
   float current_angle; // 当前机器人在map坐标系下的z轴转角(yaw)
+  int busy_status; //当busy为true时系统将仍然后接收新指令，但是不会立即处理。当系统退出busy状态后再处理消息
 }Galileo_Status;
 ```
 
