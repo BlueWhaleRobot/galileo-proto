@@ -10,7 +10,7 @@
 
 [Java & Android](https://github.com/BluewhaleRobot/javagalileo) [![Build Status](https://travis-ci.org/BluewhaleRobot/javagalileo.svg)](https://travis-ci.org/BluewhaleRobot/javagalileo)
 
-所有语言的SDK都是基于 `C++ SDK` 进行开发。下面对 `C++ SDK` 进行说明。其他语言可以进行参考，SDK的使用方法都是一致的。对于不同语言SDK的详细信息可以参考每个SDK的READMMD文件。
+所有语言的SDK都是基于 `C++ SDK` 进行开发。下面对 `C++ SDK` 进行说明。其他语言可以进行参考，SDK的使用方法都是一致的。对于不同语言SDK的详细信息可以参考每个SDK的README文件。
 
 ## 快速开始
 
