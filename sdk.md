@@ -2,13 +2,13 @@
 
 为了降低用户开发和使用伽利略导航系统的难度，我们提供了伽利略导航系统SDK。目前对以下语言提供了支持
 
-[C++](https://github.com/BluewhaleRobot/GalileoSDK)
+[C++](https://github.com/BluewhaleRobot/GalileoSDK) [![Build Status](https://travis-ci.org/BluewhaleRobot/GalileoSDK.svg)](https://travis-ci.org/BluewhaleRobot/GalileoSDK)
 
-[Python](https://github.com/BluewhaleRobot/pygalileo)
+[Python](https://github.com/BluewhaleRobot/pygalileo) [![Build Status](https://travis-ci.org/BluewhaleRobot/pygalileo.svg)](https://travis-ci.org/BluewhaleRobot/pygalileo)
 
-[C#](https://github.com/BluewhaleRobot/SharpGalileo)
+[C#](https://github.com/BluewhaleRobot/SharpGalileo) [![Build Status](https://travis-ci.org/BluewhaleRobot/SharpGalileo.svg)](https://travis-ci.org/BluewhaleRobot/SharpGalileo)
 
-[Java & Android](https://github.com/BluewhaleRobot/javagalileo)
+[Java & Android](https://github.com/BluewhaleRobot/javagalileo) [![Build Status](https://travis-ci.org/BluewhaleRobot/javagalileo.svg)](https://travis-ci.org/BluewhaleRobot/javagalileo)
 
 所有语言的SDK都是基于 `C++ SDK` 进行开发。下面对 `C++ SDK` 进行说明。其他语言可以进行参考，SDK的使用方法都是一致的。对于不同语言SDK的详细信息可以参考每个SDK的READMMD文件。
 
