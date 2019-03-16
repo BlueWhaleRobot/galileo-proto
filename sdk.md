@@ -16,7 +16,7 @@
 
 ### 获取当前局域网内所有机器人
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 
 int main(){
@@ -42,7 +42,7 @@ int main(){
 下面这种连接方式是阻塞的，sdk会等待10000ms连接局域网内任意一个机器人。如果局域网内有多个机器人，程序会返回MULTI_SERVER_FOUND错误。当局域网内有且仅有唯一的一个机器人时，sdk自动连接。
 如果10000ms没有成功连接机器人，Connect方法会返回超时TIMEOUT错误。
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 
 int main(){
@@ -59,7 +59,7 @@ int main(){
 
 下面的连接方式是异步的，可以通过设置回调函数处理机器人连接状态。这个方法是非阻塞的，Connect方法会立即返回。当连接成功或超时时OnConnect回调会被调用。具体的状态信息可以通过回调函数的第一个参数获取
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 
 int main(){
@@ -85,7 +85,7 @@ int main(){
 
 在连接机器人后，机器人的状态信息可以通过`GetCurrentStatus`方法获取。具体有哪些状态信息可以参照`galileo_serial_server/GalileoStatus.h`文件定义。
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 #include "galileo_serial_server/GalileoStatus.h"
 
@@ -110,7 +110,7 @@ int main(){
 
 ### 控制机器人前进
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 
 int main(){
@@ -125,7 +125,7 @@ int main(){
 
 假设机器人已经建立好地图且绘制好相关路径，我们可以通过MoveTo方法控制机器人移动到特定坐标位置。下面代码中的posx和posy即为目标点坐标。你可以替换成自己的实际目标点坐标。
 
-```c++
+```cpp
 #include "GalileoSDK.h"
 #include "galileo_serial_server/GalileoStatus.h"
 
@@ -165,7 +165,7 @@ int main(){
 
 ## SDK 说明
 
-```c++
+```cpp
 GALILEO_RETURN_CODE
 Connect(std::string targetID, bool auto_connect, int timeout,
         void (*OnConnect)(GALILEO_RETURN_CODE, std::string),
@@ -190,7 +190,7 @@ Connect(std::string targetID, bool auto_connect, int timeout,
 
 GALILEO_RETURN_CODE
 
-```c++
+```cpp
 std::vector<ServerInfo> GetServersOnline()
 ```
 
@@ -202,7 +202,7 @@ std::vector<ServerInfo> GetServersOnline()
 
 局域网内所有机器人列表
 
-```c++
+```cpp
 ServerInfo *GetCurrentServer();
 ```
 
@@ -214,7 +214,7 @@ ServerInfo *GetCurrentServer();
 
 在SDK未连接机器人时，此方法返回NULL。在SDK成功连接机器人后此方法返回机器人信息
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SendCMD(uint8_t[] cmd, int length);
 ```
 
@@ -230,7 +230,7 @@ GALILEO_RETURN_CODE SendCMD(uint8_t[] cmd, int length);
 
 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StartNav();
 ```
 
@@ -239,7 +239,7 @@ GALILEO_RETURN_CODE StartNav();
 输入 空
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StopNav();
 ```
 
@@ -248,7 +248,7 @@ GALILEO_RETURN_CODE StopNav();
 输入 空
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SetGoal(int goalIndex);
 ```
 
@@ -260,7 +260,7 @@ GALILEO_RETURN_CODE SetGoal(int goalIndex);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE PauseGoal();
 ```
 
@@ -270,7 +270,7 @@ GALILEO_RETURN_CODE PauseGoal();
 
 输出 GALILEO_RETURN_CODE
 
-```c++
+```cpp
 GALILEO_RETURN_CODE ResumeGoal();
 ```
 
@@ -280,7 +280,7 @@ GALILEO_RETURN_CODE ResumeGoal();
 
 输出 GALILEO_RETURN_CODE
 
-```c++
+```cpp
 GALILEO_RETURN_CODE CancelGoal();
 ```
 
@@ -290,7 +290,7 @@ GALILEO_RETURN_CODE CancelGoal();
 
 输出 GALILEO_RETURN_CODE
 
-```c++
+```cpp
 GALILEO_RETURN_CODE InsertGoal(float x, float y);
 ```
 
@@ -303,7 +303,7 @@ GALILEO_RETURN_CODE InsertGoal(float x, float y);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE ResetGoal();
 ```
 
@@ -313,7 +313,7 @@ GALILEO_RETURN_CODE ResetGoal();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SetSpeed(float vLinear, float vAngle);
 ```
 
@@ -326,7 +326,7 @@ GALILEO_RETURN_CODE SetSpeed(float vLinear, float vAngle);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE Shutdown();
 ```
 
@@ -336,7 +336,7 @@ GALILEO_RETURN_CODE Shutdown();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SetAngle(uint8_t sign, uint8_t angle);
 ```
 
@@ -349,7 +349,7 @@ GALILEO_RETURN_CODE SetAngle(uint8_t sign, uint8_t angle);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StartLoop();
 ```
 
@@ -359,7 +359,7 @@ GALILEO_RETURN_CODE StartLoop();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StopLoop();
 ```
 
@@ -369,7 +369,7 @@ GALILEO_RETURN_CODE StopLoop();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SetLoopWaitTime(uint8_t time);
 ```
 
@@ -379,7 +379,7 @@ GALILEO_RETURN_CODE SetLoopWaitTime(uint8_t time);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StartMapping();
 ```
 
@@ -389,7 +389,7 @@ GALILEO_RETURN_CODE StartMapping();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StopMapping();
 ```
 
@@ -399,7 +399,7 @@ GALILEO_RETURN_CODE StopMapping();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SaveMap();
 ```
 
@@ -409,7 +409,7 @@ GALILEO_RETURN_CODE SaveMap();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE UpdateMap();
 ```
 
@@ -419,7 +419,7 @@ GALILEO_RETURN_CODE UpdateMap();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StartChargeLocal();
 ```
 
@@ -429,7 +429,7 @@ GALILEO_RETURN_CODE StartChargeLocal();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StopChargeLocal();
 ```
 
@@ -439,7 +439,7 @@ GALILEO_RETURN_CODE StopChargeLocal();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE SaveChargeBasePosition();
 ```
 
@@ -449,7 +449,7 @@ GALILEO_RETURN_CODE SaveChargeBasePosition();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StartCharge(float x, float y);
 ```
 
@@ -459,7 +459,7 @@ GALILEO_RETURN_CODE StartCharge(float x, float y);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE StopCharge();
 ```
 
@@ -469,7 +469,7 @@ GALILEO_RETURN_CODE StopCharge();
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE MoveTo(float x, float y, uint8_t *goalNum);
 ```
 
@@ -484,7 +484,7 @@ GALILEO_RETURN_CODE MoveTo(float x, float y, uint8_t *goalNum);
 输出 `GALILEO_RETURN_CODE`
 
 
-```c++
+```cpp
 GALILEO_RETURN_CODE GetGoalNum(uint8_t *goalNum);
 ```
 
@@ -496,7 +496,7 @@ GALILEO_RETURN_CODE GetGoalNum(uint8_t *goalNum);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 GALILEO_RETURN_CODE GetCurrentStatus(galileo_serial_server::GalileoStatus *);
 ```
 
@@ -508,21 +508,21 @@ GALILEO_RETURN_CODE GetCurrentStatus(galileo_serial_server::GalileoStatus *);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 void SetCurrentStatusCallback(void (*callback)(
         GALILEO_RETURN_CODE, galileo_serial_server::GalileoStatus));
 ```
 
 设置状态更新回调函数，当伽利略系统状态更新时会执行设置的回调函数并将最新的系统状态传递给此回调函数。
 
-```c++
+```cpp
 void SetGoalReachedCallback(
         void (*callback)(int goalID, galileo_serial_server::GalileoStatus));
 ```
 
 设置到达目标点函数。当机器人到达任意目标点时会执行此处设置的回调函数。并且将目标点ID和当前系统状态传递给此回调函数
 
-```c++
+```cpp
 GALILEO_RETURN_CODE WaitForGoal(int goalID);
 ```
 
@@ -534,7 +534,7 @@ GALILEO_RETURN_CODE WaitForGoal(int goalID);
 
 输出 `GALILEO_RETURN_CODE`
 
-```c++
+```cpp
 bool CheckServerOnline(std::string targetid);
 ```
 
@@ -548,7 +548,7 @@ bool CheckServerOnline(std::string targetid);
 
 `bool` 目标机器人是否在线
 
-```c++
+```cpp
 void Dispose();
 ```
 
