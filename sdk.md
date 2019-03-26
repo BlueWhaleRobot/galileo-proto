@@ -81,6 +81,32 @@ int main(){
 }
 ```
 
+### 通过物联网跨局域网连接机器人
+
+```cpp
+#include "GalileoSDK.h"
+
+int main(){
+    GalileoSDK::GalileoSDK sdk; // 实例化sdk
+    // 通过物联网连接机器人，可以跨局域网连接。
+    // 参数为目标机器人id，超时时间timeout，目标机器人密码，回调函数
+    if (sdk.Connect("71329A5B0F2D68364BB7B44F3F125531E4C7F5BC3BCE2694DFE39B505FF9C730A614FF2790C1", 10000, "xiaoqiang", NULL, NULL) != GalileoSDK::GALILEO_RETURN_CODE::OK)
+    {
+        std::cout << "Connect to server failed" << std::endl;
+    }
+    while (true)
+    {
+        if (sdk.PublishTest() == GalileoSDK::GALILEO_RETURN_CODE::OK) {
+            std::cout << "pub succeed" << std::endl;
+        }
+        else {
+            std::cout << "pub failed" << std::endl;
+        }
+        Sleep(1000);
+    }
+}
+```
+
 ### 获取机器人当前电压
 
 在连接机器人后，机器人的状态信息可以通过`GetCurrentStatus`方法获取。具体有哪些状态信息可以参照`galileo_serial_server/GalileoStatus.h`文件定义。
@@ -547,6 +573,18 @@ bool CheckServerOnline(std::string targetid);
 输出
 
 `bool` 目标机器人是否在线
+
+```cpp
+GALILEO_RETURN_CODE SendAudio(char audio[]);
+```
+
+向机器人发布语音
+
+输入
+
+`char audio[]` 语音uft8字符串
+
+输出 `GALILEO_RETURN_CODE`
 
 ```cpp
 void Dispose();
