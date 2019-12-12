@@ -7,3 +7,5 @@
 * [二. 串口通信协议](serial.md#start)
 
 * [三. 伽利略导航系统SDK说明](sdk.md)
+
+* [四. 伽利略导航系统HTTP协议说明](http.md)
