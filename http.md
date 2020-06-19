@@ -86,9 +86,9 @@ URL: /system/speed
 
 |参数|类型|说明|
 |--|--|--|
-|speed_x|float|x方向速度|
-|speed_y|float|y方向速度|
-|speed_angle|float|转动角速度|
+|speed_x|float|x方向速度，单位为米每秒|
+|speed_y|float|y方向速度，单位为米每秒|
+|speed_angle|float|转动角速度, 单位是弧度每秒|
 
 ### 遥控机器人
 
@@ -345,9 +345,9 @@ URL: /map/pose
 
 |参数|类型|说明|
 |--|--|--|
-|x|float|机器人当前x坐标|
-|y|float|机器人当前y坐标|
-|angle|float|机器人当前朝向角度|
+|x|float|机器人当前x坐标，单位为米|
+|y|float|机器人当前y坐标，单位为米|
+|angle|float|机器人当前朝向角度， 单位为度|
 
 ### 获取当前正在创建的地图信息
 
@@ -593,9 +593,9 @@ URL: /navigation/pose
 
 |参数|类型|说明|
 |--|--|--|
-|x|float|机器人x坐标|
-|y|float|机器人y坐标|
-|angle|float|机器人朝向角度|
+|x|float|机器人x坐标，单位为米|
+|y|float|机器人y坐标，单位为米|
+|angle|float|机器人朝向角度，单位为度|
 
 ### 获取当前导航正在使用的地图和路径名称
 
@@ -1171,8 +1171,8 @@ URL: /action
 
 |属性|类型|说明|
 |--|--|--|
-|distance|float|机器人局部运动距离，当distance为正时向前运动，当distance为负时向后运动|
-|angle|float|机器人局部运动转向角度，机器人先转动对应角度再直行|
+|distance|float|机器人局部运动距离，当distance为正时向前运动，当distance为负时向后运动，单位为米|
+|angle|float|机器人局部运动转向角度，机器人先转动对应角度再直行，单位为弧度|
 |method|int|精准对接辅助手段，0为无，1为使用雷达|
 
 请求参数:
