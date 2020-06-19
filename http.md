@@ -840,9 +840,9 @@ URL: /navigation/start_nav_task
 
 |参数|类型|说明|
 |--|--|--|
-|x|float|导航目标点坐标x值|
-|y|float|导航目标点坐标y值|
-|theta|float|导航目标点角度值|
+|x|float|导航目标点坐标x值，单位为米|
+|y|float|导航目标点坐标y值，单位为米|
+|theta|float|导航目标点角度值,单位为弧度|
 
 返回参数:
 
@@ -1151,9 +1151,9 @@ URL: /action
 
 |属性|类型|说明|
 |--|--|--|
-|x|float|目标位置x坐标|
-|y|float|目标位置y坐标|
-|theta|float|目标位置机器人朝向角度|
+|x|float|目标位置x坐标，单位为米|
+|y|float|目标位置y坐标，单位为米|
+|theta|float|目标位置机器人朝向角度，单位为弧度|
 
 #### charge_action 充电动作
 
@@ -1161,9 +1161,9 @@ URL: /action
 
 |属性|类型|说明|
 |--|--|--|
-|x|float|充电桩位置x坐标|
-|y|float|充电桩位置y坐标|
-|theta|float|充电正面方向|
+|x|float|充电桩位置x坐标，单位为米|
+|y|float|充电桩位置y坐标，单位为米|
+|theta|float|充电正面方向，单位为弧度|
 
 #### local_move_action 局部运动动作
 
