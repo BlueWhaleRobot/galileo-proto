@@ -2,7 +2,7 @@
 
 为了降低用户开发和使用伽利略导航系统的难度，我们提供了伽利略导航系统SDK。目前对以下语言提供了支持
 
-[C++](https://github.com/BluewhaleRobot/GalileoSDK) [![Build Status](https://travis-ci.org/BluewhaleRobot/GalileoSDK.svg)](https://travis-ci.org/BluewhaleRobot/GalileoSDK)
+[C++](http://git.bwbot.org/publish/GalileoSDK) [![Build Status](http://git.bwbot.org/publish/GalileoSDK/badges/master/pipeline.svg)](http://git.bwbot.org/publish/GalileoSDK/-/pipelines)
 
 [Python](https://github.com/BluewhaleRobot/pygalileo) [![Build Status](https://travis-ci.org/BluewhaleRobot/pygalileo.svg)](https://travis-ci.org/BluewhaleRobot/pygalileo)
 
@@ -591,6 +591,47 @@ void Dispose();
 ```
 
 释放SDK占用的资源
+
+```cpp
+GALILEO_RETURN_CODE EnableGreeting(bool flag);
+```
+
+控制迎宾模式。在迎宾模式下当有人在机器人前走过时机器人会播放欢迎光临语音。
+
+输入
+
+`bool flag` 是否开启迎宾模式
+
+输出 `GALILEO_RETURN_CODE`
+
+```cpp
+GALILEO_RETURN_CODE SendGalileoBridgeRequest(std::string method, std::string url, std::string body, HttpBridgeResponse& response, int timeout)
+```
+
+调用Galileo Http API。Galileo Http API[说明文档](./http.html)
+
+输入
+
+method http请求方式，如get，post等
+url http请求url
+body http请求body
+response http请求响应，其数据结构为 std::string uuid，请求的id。 uint16_t status_code，响应的http状态码。std::string body， http响应body。
+timeout 发送请求的超时值。
+
+输出 `GALILEO_RETURN_CODE`
+
+例子
+
+```cpp
+GalileoSDK::HttpBridgeResponse res;
+status = sdk.SendGalileoBridgeRequest("get", "/api/v1/system/status", "", res, 10 * 1000);
+if (status != GalileoSDK::GALILEO_RETURN_CODE::OK)
+{
+    std::cout << "send http get req to server failed" << std::endl;
+    std::cout << "status: " << status << std::endl;
+    return;
+}
+```
 
 ## 注意事项
 

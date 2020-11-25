@@ -299,6 +299,160 @@ URL: /system/self_test
 |bluetooth|bool|蓝牙是否工作正常|
 |battery|bool|获取电池电压是否正常|
 
+### 获取当前io电平情况
+
+注意io仍为电平输出，获取的是输出电平的状态，并不是输入信号
+
+URL: /system/info
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|status|string|获取状态|
+|out1|string|"-1"为未设置，"0"为低电平, "1"为高电平|
+|out2|string|"-1"为未设置，"0"为低电平, "1"为高电平|
+|out3|string|"-1"为未设置，"0"为低电平, "1"为高电平|
+
+### 控制当前io电平情况
+
+URL: /system/info
+
+请求方式: POST
+
+请求参数:
+
+|参数|类型|说明|
+|--|--|--|
+|level|string|0 为低电平， 1为高电平|
+|port|string|可以为1,2,3分别对应三个IO端口|
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|status|string|获取状态|
+|status|string|设置电平状态|
+
+### 获取机器人当前配置参数
+
+URL: /system/config
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|default_map|string|默认地图名称|
+|maps|list|地图对应默认路径配置|
+|navigation_speed|float|最大导航速度|
+|max_control_speed|float|最大遥控速度|
+|bar_distance_min|float|避障距离|
+|k2|float|PID控制参数k2|
+|kp|float|PID控制参数kp|
+|ki|float|PID控制参数ki|
+|kd|float|PID控制参数kd|
+|look_ahead_dist|float|预估距离|
+|theta_max|float|最大角速度|
+|plan_width|float|车体宽度|
+|path_change|float|避障时是否绕开|
+|forward_width|float|预估距离|
+|rot_width|float|车体旋转宽度|
+|backtime|float|最大后退距离|
+
+### 修改机器人配置
+
+URL: /system/config
+
+请求方式: POST
+
+请求参数:
+
+|参数|类型|说明|
+|--|--|--|
+|default_map|string|默认地图名称，可选参数|
+|maps|list|地图对应默认路径配置，可选参数|
+|navigation_speed|float|最大导航速度，可选参数|
+|max_control_speed|float|最大遥控速度，可选参数|
+|bar_distance_min|float|避障距离，可选参数|
+|k2|float|PID控制参数k2，可选参数|
+|kp|float|PID控制参数kp，可选参数|
+|ki|float|PID控制参数ki，可选参数|
+|kd|float|PID控制参数kd，可选参数|
+|look_ahead_dist|float|预估距离，可选参数|
+|theta_max|float|最大角速度，可选参数|
+|plan_width|float|车体宽度，可选参数|
+|path_change|float|避障时是否绕开，可选参数|
+|forward_width|float|预估距离，可选参数|
+|rot_width|float|车体旋转宽度，可选参数|
+|backtime|float|最大后退距离，可选参数|
+
+返回参数:
+
+修改后的机器人参数
+
+|参数|类型|说明|
+|--|--|--|
+|default_map|string|默认地图名称|
+|maps|list|地图对应默认路径配置|
+|navigation_speed|float|最大导航速度|
+|max_control_speed|float|最大遥控速度|
+|bar_distance_min|float|避障距离|
+|k2|float|PID控制参数k2|
+|kp|float|PID控制参数kp|
+|ki|float|PID控制参数ki|
+|kd|float|PID控制参数kd|
+|look_ahead_dist|float|预估距离|
+|theta_max|float|最大角速度|
+|plan_width|float|车体宽度|
+|path_change|float|避障时是否绕开|
+|forward_width|float|预估距离|
+|rot_width|float|车体旋转宽度|
+|backtime|float|最大后退距离|
+
+### 恢复机器人默认参数
+
+URL: /system/config
+
+请求方式: DELETE
+
+请求参数
+
+|参数|类型|说明|
+|--|--|--|
+|key|string|对应参数的名称,如k2,kp,ki等等|
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|status|string|恢复默认值操作状态|
+
+### 让机器人播放语音
+
+URL: /system/tts
+
+请求方式: GET
+
+请求参数:
+
+|参数|类型|说明|
+|--|--|--|
+|text|string|需要机器人播放的语音对应的文本|
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|status|string|语音播放状态|
+
 ## 创建地图API
 
 ### 启动创建地图
@@ -718,6 +872,18 @@ URL: /navigation/map_pgm
 
 返回目标地图的pgm图片数据
 
+### 获取目标地图的png图片信息
+
+URL: /navigation/map_png
+
+请求方式: GET
+
+|参数|类型|说明|
+|--|--|--|
+|name|string|目标地图名称|
+
+返回目标地图的png图片数据
+
 ### 获取当前正在使用的地图
 
 URL: /navigation/current_map
@@ -891,6 +1057,33 @@ URL: /navigation/start_nav_task
   }
 }
 ```
+
+### 开始自动充电
+
+URL: /navigation/go_charge
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+返回充电任务对象
+
+### 停止自动充电
+
+URL: /navigation/stop_charge
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|status|string|停止充电操作状态|
+|task|object|充电任务对象|
 
 ## 任务相关API
 
@@ -1247,3 +1440,17 @@ URL: /action
 |参数|类型|说明|
 |--|--|--|
 |id|string|目标action的id|
+
+### 触发等待动作
+
+说明: 对于`wait_req_action`，机器人会一直等待http请求触发，直到触发后才继续执行下面的任务。
+
+URL: /action/update_wait_req
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+当前的`wait_req_action`对象
