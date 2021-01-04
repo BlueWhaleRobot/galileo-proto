@@ -1085,6 +1085,92 @@ URL: /navigation/stop_charge
 |status|string|停止充电操作状态|
 |task|object|充电任务对象|
 
+### 移动到对应目标点
+
+URL: /navigation/move_to_index
+
+请求方式: GET
+
+请求参数:
+
+|参数|类型|说明|
+|--|--|--|
+|index|int|目标点index，即绘制路径时插入导航点的index|
+
+返回参数:
+
+返回导航任务对象
+
+### 取消当前导航任务
+
+URL: /navigation/stop_nav_task
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+返回当前导航任务对象
+
+### 获取导航循环任务信息
+
+导航循环任务为沿着插入的导航点依次移动的导航任务，其效果和点击客户端上的循环选项一样。
+
+URL: /navigation/loop_task
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+返回循环导航任务状态
+
+### 开始导航循环任务
+
+URL: /navigation/loop_task
+
+请求方式: POST
+
+请求参数
+
+|参数|类型|说明|
+|--|--|--|
+|wait_time|int|循环到达目标点后的等待时间|
+
+返回参数:
+
+返回新创建的导航循环任务，如果已有导航循环任务则会返回错误
+
+### 停止导航循环任务
+
+URL: /navigation/loop_task
+
+请求方式: DELETE
+
+请求参数: 无
+
+返回参数:
+
+返回当前的导航循环任务
+
+### 获取充电桩位置
+
+URL: /navigation/charge_pose
+
+请求方式: GET
+
+请求参数: 无
+
+返回参数:
+
+|参数|类型|说明|
+|--|--|--|
+|x|float|充电桩位置坐标x|
+|y|float|充电桩位置坐标y|
+|theta|float|充电桩角度theta|
+
 ## 任务相关API
 
 机器人的一个动作被定义为Action。比如移动到[1,1]点。又如播放一段声音。一系列的Action组合在一起构成一个任务即Task。通过对Action和Task进行操作，我们可以轻松的控制机器人实现一系列动作。
