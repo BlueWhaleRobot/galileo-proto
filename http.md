@@ -65,7 +65,7 @@ URL: /token
 
 下面是一个调用的例子
 
-```text
+```
 http://192.168.0.132:3546/api/v1/system/info?token=28b1c500400611ebb805493c9303c705
 ```
 
