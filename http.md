@@ -1,6 +1,75 @@
 # 伽利略导航系统HTTP协议说明
 
-API的格式为API版本号加上对应的URL，以获取系统状态API为例，实际请求地址为/api/v1/system/status。API返回值都是json格式的数据。下面的文档将省略API前缀。API服务程序默认端口为3546
+API的格式为API版本号加上对应的URL，以获取系统状态API为例，实际请求地址为/api/v1/system/status。API返回值都是json格式的数据。下面的文档将省略API前缀。API服务程序默认端口为3546。
+机器人在启动后会向局域网发送UDP广播，端口为22002。通过此广播我们能够获取到局域网中的机器人基本信息。下面是一个具体的广播数据例子
+
+{"id": "F072E1BA8162245572D2FAEEB2526C5DD916F5A0D6D0F8A14B67FA43DC501079461280B15BA5", "port": 3546, "mac": "00:e0:4c:68:6f:0f", "version": "5.0.0"}
+
+广播数据包含了机器人ID，机器人Http服务端口号，机器人mac和机器人当前的http服务版本号。
+
+## 跨局域网调用API
+
+通过伽利略网络代理我们可以实现远程跨局域网的机器人API调用
+
+[机器人远程代理设置网址](http://robot.bwbot.org)
+
+## HTTP 服务的参数配置
+
+http服务参数配置文件位于 `/home/xiaoqiang/Documents/ros/src/galileo_api/config.json`
+
+其默认内容如下
+
+```json
+{
+    "username": "admin",
+    "password": "admin",
+    "allow_update": true,
+    "no_token_check": true,
+    "auto_charge": false,
+    "battery_low": 0
+}
+```
+
+|参数|类型|说明|
+|--|--|--|
+|username|string|获取机器人token时的用户名。默认为admin|
+|password|string|获取机器人token时的密码。默认为admin|
+|allow_update|bool|是否允许自动更新。当为true时程序有更新时客户端会收到机器人更新提示。反之则不会有更新提示。|
+|no_token_check|bool|是否开启token验证功能。默认不开启|
+|auto_charge|bool|是否开启低电量自动充电功能，默认不开启。注意开启此功能要保证机器人导航地图中有正确的充电桩位置，同时导航地图能够正常工作|
+|battery_low|float|低电量充电时的电压|
+
+## token API
+
+为了系统的安全性，在调用机器人api的时候可以加上token验证的功能。此功能默认关闭，可以通过配置http api参数打开此功能。
+
+URL: /token
+
+请求方式: GET
+
+请求参数:
+
+|参数|类型|说明|
+|--|--|--|
+|username|string|配置文件中的用户名，默认为admin|
+|password|string|配置文件中的密码, 默认为admin|
+
+返回值
+
+|参数|类型|说明|
+|result|bool|是否成功获取token|
+|token|string|获取的token|
+
+获取token后在调用api时可以在url参数中加入token=xxx,xxx为你的token数据。
+对于POST或PUT请求，token参数可以加在url中也可以在body的json数据里面。
+
+下面是一个调用的例子
+
+```text
+http://192.168.0.132:3546/api/v1/system/info?token=28b1c500400611ebb805493c9303c705
+```
+
+其中192.168.0.132为机器人IP，28b1c500400611ebb805493c9303c705为机器人token。
 
 ## 系统状态API
 
@@ -1540,3 +1609,46 @@ URL: /action/update_wait_req
 返回参数:
 
 当前的`wait_req_action`对象
+
+## Websocket相关API
+
+对于需要高频率获取的数据我们提供了websocket api。比如我们可能需要很高频率的获取机器人的位置，速度等信息。
+
+websocket默认端口3547
+
+URL格式: ws://192.168.0.132:3547/topicName?token=28b1c500400611ebb805493c9303c705
+
+其中192.168.0.132为机器人IP,28b1c500400611ebb805493c9303c705为机器人token。在开启token验证时此参数是必须的，反之则不需要。
+
+topicName为数据对应的ros话题名称。理论上可以订阅机器人内部所有的ros话题。返回的数据为ros话题数据转换成的json数据
+
+`
+注意在开启websocket连接后要定期发送ping消息，否则连接可能会自动断开。比如可以每秒发送一个ping消息。
+`
+
+下面是常用的接口
+
+### 获取GalileoStatus
+
+GalileoStatus数据定义可以参照串口api中GalileoStatus的说明。
+
+topicName: /galileo/status
+
+返回数据为json
+
+### 获取温湿度及可燃气体数据
+
+TopicName: /bw_env_sensors/EnvSensorData
+
+返回数据
+
+```c#
+float temperature; // 温度，单位摄氏度
+float rh; // 相对湿度 %RH
+float smoke; // 烟雾 ppm
+float pm1_0; // pm1.0 ug/m^3
+float pm2_5; // pm2.5 ug/m^3
+float pm10; // pm10 ug/m^3
+float lel; // 可燃气体 ppm
+float noise; // 噪声 db
+```
