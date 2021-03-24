@@ -1642,7 +1642,7 @@ TopicName: /bw_env_sensors/EnvSensorData
 
 返回数据
 
-```c#
+```c
 float temperature; // 温度，单位摄氏度
 float rh; // 相对湿度 %RH
 float smoke; // 烟雾 ppm
