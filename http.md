@@ -1528,11 +1528,28 @@ URL: /task
 
 ```json
 {
-    "name": "test task",
+    "name": "task",
     "sub_tasks": [
-        {"id": "xxxxxx"},
-        {"id": "xxxxxx"},
-    ]
+      {
+        "type": "nav_action",
+        "x": 0,
+        "y": 0,
+        "theta": 0
+      },
+      {
+        "type": "nav_action",
+        "x": 1,
+        "y": 1,
+        "theta": 1
+      },
+      {
+        "type": "nav_action",
+        "x": 2,
+        "y": 2,
+        "theta": 2
+      },
+    ],
+    "loop_flag": false,
 }
 ```
 
