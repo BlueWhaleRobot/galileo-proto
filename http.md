@@ -7,6 +7,10 @@ API的格式为API版本号加上对应的URL，以获取系统状态API为例�
 
 广播数据包含了机器人ID，机器人Http服务端口号，机器人mac和机器人当前的http服务版本号。
 
+对于Http调用的参数，GET和DELETE方法的参数放在URL query string里面。POST和PUT方法的参数放在body里面。
+
+对于HTTP协议不熟悉的用户可以先参考[这个文档](https://www.runoob.com/http/http-tutorial.html)
+
 ## 跨局域网调用API
 
 通过伽利略网络代理我们可以实现远程跨局域网的机器人API调用
@@ -106,6 +110,27 @@ URL: /system/info
 |camera_depth|int|深度摄像头topic发布频率，0代表没有数据|
 |odom|int|编码器topic发布频率，0代表没有数据|
 |imu|int|IMU topic的发布频率，0代表没有数据|
+|info|object|机器人基本信息,4.5.0和5.1.0之后版本才会有此返回|
+
+示例返回
+
+```json
+{
+    "battery": 100,
+    "camera_rgb": 19,
+    "camera_depth": 29,
+    "odom": 51,
+    "imu": 13,
+    "camera_processed": 29,
+    "info": {
+        "version": "5.1.0",
+        "code_name": "chitu-noetic",
+        "id": "AE13B83EE2846276882EE47A99391C89CD2EF6B6878D5D309F80755F8E3B7D15CB0CB9BEF55D",
+        "mac": "00:e0:4c:68:10:2d",
+        "port": 3546
+    }
+}
+```
 
 ***注意第一次调用时，由于需要对数据统计，可能对应的数据返回为0.之后调用返回数据将为正常***
 
