@@ -487,6 +487,7 @@ URL: /system/config
 |forward_width|float|预估距离，可选参数|
 |rot_width|float|车体旋转宽度，可选参数|
 |backtime|float|最大后退距离，可选参数|
+|deliver_wait_time|float|送餐最长等待时间，可选参数|
 
 返回参数:
 
@@ -510,6 +511,7 @@ URL: /system/config
 |forward_width|float|预估距离|
 |rot_width|float|车体旋转宽度|
 |backtime|float|最大后退距离|
+|deliver_wait_time|float|送餐最长等待时间，可选参数|
 
 ### 恢复机器人默认参数
 
